@@ -1,12 +1,7 @@
 name: Core
 
+# pokemoodle: run manually only (push trigger removed; see TASKS.md T-004).
 on:
-  push:
-    branches-ignore:
-      - main
-      - MOODLE_[0-9]+_STABLE
-    tags-ignore:
-      - v[0-9]+.[0-9]+.[0-9]+*
   workflow_dispatch:
     inputs:
       phpunit_extra_options:
