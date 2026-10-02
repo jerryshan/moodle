@@ -63,11 +63,11 @@ Rules for this file and the roadmap page:
 - [ ] 4.1 PHP syntax check on changed files
 - [ ] 4.2 Build the image
 - [ ] 4.3 Install from scratch through pgbouncer and load the login page
-- [ ] 4.4 Review Moodle's inherited workflows and turn off the heavy ones
+- [x] 4.4 Review Moodle's inherited workflows and turn off the heavy ones (push.yml now manual only; others were already manual)
 
 ## 5. Upstream updates (T-005)
 - [x] 5.1 Add upstream remote
-- [ ] 5.2 Sync script with a "how far behind" check
+- [ ] 5.2 Sync script (main: fetch upstream + ff-only; then merge main into main-pokemoodle) with a "how far behind" check
 - [ ] 5.3 Job every 2 weeks that opens a merge request
 - [ ] 5.4 Token so the merge request can run checks and touch workflow files
 
@@ -108,6 +108,9 @@ Rules for this file and the roadmap page:
 - [ ] 9.9 Adapters for it (write both after the pipeline has really run once)
 
 ## Done
+- D-06 approved: Moodle's Core workflow (push.yml) set to manual-only, and main-pokemoodle pushed to GitHub (4 commits).
+- Branch strategy decided: main mirrors upstream (fast-forward only, pushed); main-pokemoodle holds our changes (3 commits locally, not pushed). Fortnightly: merge main into main-pokemoodle.
+- Pushed main to the fork: now identical to upstream main (Moodle 5.3 RC2).
 - Merged upstream main into main (fast-forward, 7,521 commits). Docker image now serves the public folder with Moodle's new routing rule; web port binds to a configurable address because Caddy runs in a separate Proxmox LXC.
 - D-02 answered: Caddy (in a Proxmox LXC) handles HTTPS; Moodle containers use their own host ports behind it.
 - D-03 answered: follow upstream main (latest Moodle). Added T-014 to move this copy onto it.
