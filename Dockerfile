@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY docker/php.ini /usr/local/etc/php/conf.d/moodle.ini
 COPY docker/apache.conf /etc/apache2/conf-enabled/moodle.conf
 COPY docker/entrypoint.sh /usr/local/bin/moodle-entrypoint
-RUN chmod +x /usr/local/bin/moodle-entrypoint
+RUN sed -i 's/$//' /usr/local/bin/moodle-entrypoint && chmod +x /usr/local/bin/moodle-entrypoint
 
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
