@@ -63,7 +63,7 @@ services:
       DB_USER: ${POSTGRES_USER:-moodle}
       DB_PASSWORD: ${POSTGRES_PASSWORD}
       AUTH_TYPE: scram-sha-256
-      POOL_MODE: transaction
+      POOL_MODE: session
       MAX_CLIENT_CONN: "200"
       DEFAULT_POOL_SIZE: "20"
       MAX_PREPARED_STATEMENTS: "200"

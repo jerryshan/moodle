@@ -15,8 +15,9 @@ $CFG->dboptions = [
     'dbpersist'      => false,
     'dbport'         => getenv('MOODLE_DB_PORT') ?: '6432',
     'dbsocket'       => '',
-    // pgbouncer (transaction pooling) can't take per-connection SET options.
-    'dbhandlesoptions' => true,
+    // pgbouncer runs in session mode: Moodle uses server-side cursors, which break
+    // under transaction pooling ("cursor does not exist").
+    'dbhandlesoptions' => false,
 ];
 
 $CFG->wwwroot   = getenv('MOODLE_WWWROOT') ?: 'http://localhost:8080';
