@@ -38,14 +38,14 @@ Rules for this file and the roadmap page:
 - [x] 10.1 Fetch upstream main and fast-forward this copy onto it (done locally 2026-10-02, now 5.3 RC2; not pushed)
 - [x] 10.2 Adapt the Docker image to the new layout (web root is now the public folder, new routing rule for Apache)
 - [x] 10.3 Check PHP version and extensions needed by the new version (PHP 8.3+, added sodium)
-- [ ] 10.4 Fresh install works locally
+- [x] 10.4 Fresh install works (done on the test server, Moodle 5.3 RC2, PostgreSQL 17)
 
 ## 1. Package the site (T-001)
 - [x] 1.1 Dockerfile with base, dev and prod targets
 - [x] 1.2 docker-compose stack: Apache, PostgreSQL, pgbouncer, Redis, cron
 - [x] 1.3 Environment-driven Moodle config
 - [x] 1.4 Example env file and ignore file
-- [ ] 1.5 First real build and install; confirm pgbouncer works (else drop it)
+- [x] 1.5 First real build and install; confirm pgbouncer works (done on test: install ran through pgbouncer in transaction mode)
 
 ## 2. Run it locally (T-002)
 - [ ] 2.1 Dev compose file: code mounted, direct database, cron off
@@ -56,8 +56,8 @@ Rules for this file and the roadmap page:
 ## 3. Test site (T-003)
 - [x] 3.1 Second compose project (own ports, database, volumes): env examples + docker/README.md written
 - [x] 3.2 (written, not applied) Caddy site block for pokemoodle-test.geminitech.co.nz pointing at the container's non-conflicting host port (D-02 decided: Caddy handles HTTPS)
-- [ ] 3.3 Environment file on the server
-- [ ] 3.4 First install and smoke test
+- [x] 3.3 Environment file on the server (~/pokemoodle/test.env on gemini-home; admin password in ~/pokemoodle/test.admin-password)
+- [x] 3.4 First install and smoke test (http://192.168.1.156:8081 returns the login page; sessions in Redis; cron running). Still to do: apply the Caddy entry and DNS (3.2), then switch test.env to the https address.
 
 ## 4. Automatic checks (T-004)
 - [ ] 4.1 PHP syntax check on changed files
@@ -108,6 +108,8 @@ Rules for this file and the roadmap page:
 - [ ] 9.9 Adapters for it (write both after the pipeline has really run once)
 
 ## Done
+- T-001: Docker setup built and started on gemini-home (Apache, PostgreSQL 17, pgbouncer, Redis, cron). Fixes found on first run: PostgreSQL 17 needed, entrypoint permissions, cron user. Data lives in named volumes (pgdata, moodledata), which survive rebuilds.
+- T-014: Moodle 5.3 RC2 installs and runs from a fresh database.
 - Hostnames decided: pokemoodle-test.geminitech.co.nz and pokemoodle.geminitech.co.nz, Caddy with automatic certificates. Wrote instance env examples, Caddy entries and VM setup steps (docker/README.md).
 - D-06 approved: Moodle's Core workflow (push.yml) set to manual-only, and main-pokemoodle pushed to GitHub (4 commits).
 - Branch strategy decided: main mirrors upstream (fast-forward only, pushed); main-pokemoodle holds our changes (3 commits locally, not pushed). Fortnightly: merge main into main-pokemoodle.
