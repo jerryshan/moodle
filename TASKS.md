@@ -9,7 +9,7 @@ Rules for this file and the roadmap page:
 
 ## Roadmap numbers
 
-Two streams: **Platform** (T-001 to T-016: hosting, delivery, operations, AI workflow) and **Product** (what PokeMoodle does; from T-017). Everything numbered so far is Platform except T-017.
+Three streams: **Platform** (hosting, delivery, operations: T-001 to T-010, T-013, T-014), **AI workflow** (the ai-playbook project and how projects use it: T-011, T-012, T-015, T-016) and **Product** (what PokeMoodle does: T-017 onward).
 
 | Roadmap | Priority | Horizon | Title | Entries in this file |
 |---|---|---|---|---|
@@ -117,6 +117,7 @@ Two streams: **Platform** (T-001 to T-016: hosting, delivery, operations, AI wor
 - [ ] 11.3 Decide which changes need feature switches and which go on the test site first
 
 ## Done
+- Added a third stream, AI workflow (the ai-playbook project): T-011, T-012, T-015, T-016. Filter on the roadmap page updated.
 - Roadmap split into two streams, Platform and Product, with a filter on the page. Product stream starts with T-017 and decision D-07.
 - Added a CI/CD flow diagram as a second page (cicd.html) inside the roadmap artifact. Showing the planned test-then-live flow, with checks, backups, health checks, rollback and the fortnightly upstream sync.
 - ai-playbook: added Moodle-in-Docker playbook (lessons from this deployment). Note: my commit also swept in seven other playbooks/skills from another session; checked, generic, left in place.
