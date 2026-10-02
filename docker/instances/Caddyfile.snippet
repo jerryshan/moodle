@@ -1,5 +1,5 @@
 # Add to the Caddyfile in the Caddy LXC, then: caddy validate && systemctl reload caddy
-# Replace 192.168.0.10 with the gemini-home VM's LAN IP (same as WEB_BIND).
+# gemini-home VM LAN IP: 192.168.1.156 (same as WEB_BIND).
 # Caddy sends X-Forwarded-For/Proto/Host itself; Moodle is told to trust it via
 # MOODLE_SSLPROXY / MOODLE_REVERSEPROXY.
 
@@ -8,7 +8,7 @@ pokemoodle-test.geminitech.co.nz {
 	request_body {
 		max_size 512MB
 	}
-	reverse_proxy 192.168.0.10:8081 {
+	reverse_proxy 192.168.1.156:8081 {
 		transport http {
 			response_header_timeout 300s
 		}
@@ -20,7 +20,7 @@ pokemoodle.geminitech.co.nz {
 	request_body {
 		max_size 512MB
 	}
-	reverse_proxy 192.168.0.10:8082 {
+	reverse_proxy 192.168.1.156:8082 {
 		transport http {
 			response_header_timeout 300s
 		}
