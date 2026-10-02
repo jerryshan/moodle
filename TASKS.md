@@ -56,7 +56,7 @@ Rules for this file and the roadmap page:
 ## 3. Test site (T-003)
 - [x] 3.1 Second compose project (own ports, database, volumes): env examples + docker/README.md written
 - [x] 3.2 Caddy site block for pokemoodle-test.geminitech.co.nz pointing at the container's non-conflicting host port (D-02 decided: Caddy handles HTTPS)
-- [x] 3.3 Environment file on the server (~/pokemoodle/test.env on gemini-home; admin password changed by you, no copy kept)
+- [x] 3.3 Environment file on the server (/opt/pokemoodle/test.env on gemini-home; admin password changed by you, no copy kept)
 - [x] 3.4 First install and smoke test (http://192.168.1.156:8081 returns the login page; sessions in Redis; cron running). Caddy entry and DNS applied by you; test.env switched to https (sslproxy on, reverseproxy off because Caddy passes the Host header).
 
 ## 4. Automatic checks (T-004)
@@ -78,7 +78,7 @@ Rules for this file and the roadmap page:
 - [ ] 6.4 Secrets for server access
 
 ## 7. Live site (T-007)
-- [ ] 7.1 Live stack and environment file (prod.env.example written; Caddy entry and DNS exist, pointing at port 8082)
+- [x] 7.1 Live stack and environment file (running at https://pokemoodle.geminitech.co.nz, port 8082, /opt/pokemoodle/prod.env; admin password must be set by you with reset_password.php)
 - [ ] 7.2 Approval step before deploying (D-05 decided: only you approve)
 - [ ] 7.3 Promote the same image that passed on test
 - [ ] 7.4 Rollback procedure
@@ -108,6 +108,8 @@ Rules for this file and the roadmap page:
 - [ ] 9.9 Adapters for it (write both after the pipeline has really run once)
 
 ## Done
+- Both sites live from /opt/pokemoodle on gemini-home: test (port 8081) and live (port 8082), each with its own database, Redis and files. Moved test from the home folder without data loss.
+- Fixed pgbouncer: transaction pooling broke Moodle (cursors); now session pooling. Admin login on test failed because the generated password was never changed (and its file had been removed): reset with admin/cli/reset_password.php.
 - T-003: test site live at https://pokemoodle-test.geminitech.co.nz (login page loads, no mixed content, IP address redirects to the https name). Learned: with Caddy passing the Host header, Moodle's reverseproxy must stay off or it returns an error.
 - Caddy entries and DNS for both names created by you; live name returns 502 until the live instance runs on port 8082.
 - T-001: Docker setup built and started on gemini-home (Apache, PostgreSQL 17, pgbouncer, Redis, cron). Fixes found on first run: PostgreSQL 17 needed, entrypoint permissions, cron user. Data lives in named volumes (pgdata, moodledata), which survive rebuilds.
