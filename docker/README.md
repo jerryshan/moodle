@@ -12,8 +12,8 @@ Database, pgbouncer and Redis publish no ports.
 
 ## One-time setup on the VM
 ```bash
-sudo mkdir -p /opt/pokemoodle && cd /opt/pokemoodle
-git clone -b main-pokemoodle git@github.com:jerryshan/moodle.git src
+mkdir -p ~/pokemoodle && cd ~/pokemoodle
+git clone --depth 1 -b main-pokemoodle https://github.com/jerryshan/moodle.git src
 cp src/docker/instances/test.env.example test.env   # edit passwords + WEB_BIND (VM LAN IP)
 cp src/docker/instances/prod.env.example prod.env
 ```
@@ -21,7 +21,7 @@ Firewall: allow ports 8081/8082 from the Caddy LXC only. Add DNS A records for b
 
 ## Start / install the test instance
 ```bash
-cd /opt/pokemoodle/src
+cd ~/pokemoodle/src
 dc() { docker compose --env-file ../$1.env "${@:2}"; }   # usage: dc test <args>
 dc test up -d --build db redis pgbouncer
 dc test run --rm -u www-data web php admin/cli/install_database.php \
@@ -33,7 +33,7 @@ Repeat with `prod` for the live instance (use a different admin password). Each 
 
 ## Update an instance (manual, until CD exists)
 ```bash
-cd /opt/pokemoodle/src && git pull
+cd ~/pokemoodle/src && git pull
 dc test up -d --build
 dc test exec -u www-data web php admin/cli/upgrade.php --non-interactive
 dc test exec -u www-data web php admin/cli/purge_caches.php
