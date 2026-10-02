@@ -144,7 +144,7 @@ Three streams: **Platform** (hosting, delivery, operations: T-001 to T-010, T-01
 - [ ] 13.3 Rule for any core change: recorded and justified in PRODUCT.md
 
 ## 14. Look and feel (T-020)
-- [ ] 14.1 Theme plugin, child of Boost
+- [ ] 14.1 Theme plugin, child of Boost (setting: Generation 2 / Johto, Game Boy Color style)
 - [ ] 14.2 Colours, pixel font, login page
 - [ ] 14.3 Dashboard and course pages
 - [ ] 14.4 Reduced-motion and contrast checks
@@ -203,6 +203,7 @@ Three streams: **Platform** (hosting, delivery, operations: T-001 to T-010, T-01
 - [ ] 24.4 Store privately (D-08), list sources and sizes before downloading
 
 ## Done
+- Generation 2 (Gold/Silver/Crystal, Johto) chosen as the backdrop for the site customisation. Recorded in PRODUCT.md and T-020.
 - Added T-031 (gather Pokémon artwork and data) at your request.
 - T-017 / D-07: product idea captured in PRODUCT.md (gamified Moodle, original 151 Pokémon, Gold/Silver-style turn-based battles, new plugins with core left alone). Product cards T-018 to T-030 and decisions D-08 (artwork location, optional) and D-09 (first playable slice) added.
 - Added a third stream, AI workflow (the ai-playbook project): T-011, T-012, T-015, T-016. Filter on the roadmap page updated.
