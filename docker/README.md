@@ -38,3 +38,13 @@ dc test up -d --build
 dc test exec web php admin/cli/upgrade.php --non-interactive
 dc test exec web php admin/cli/purge_caches.php
 ```
+
+## Where the data lives
+Each instance keeps its data in plain folders under `DATA_DIR` (set in its env file), not in Docker volumes:
+
+| Folder | Contents |
+|---|---|
+| `/opt/pokemoodle/<env>/pgdata` | PostgreSQL files (owned by the container's postgres user; back up with `pg_dump`, not by copying) |
+| `/opt/pokemoodle/<env>/moodledata` | Uploaded files, caches, temp files |
+
+Rebuilding or recreating containers does not touch these folders. They are only lost if the folders are deleted, or if `DATA_DIR` is changed to point somewhere else. A one-off safety dump of both databases from before the move is in `/opt/pokemoodle/backups/`.

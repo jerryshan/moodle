@@ -84,7 +84,7 @@ Rules for this file and the roadmap page:
 - [ ] 7.4 Rollback procedure
 
 ## 8. Operations (T-008, T-010, T-009, T-013)
-- [ ] 8.1 Nightly database dump and file backup
+- [ ] 8.1 Nightly database dump and file backup (data now in plain folders under /opt/pokemoodle; first one-off dumps exist)
 - [ ] 8.2 Off-server copy
 - [ ] 8.3 Tested restore
 - [ ] 8.4 Site up check
@@ -108,6 +108,7 @@ Rules for this file and the roadmap page:
 - [ ] 9.9 Adapters for it (write both after the pipeline has really run once)
 
 ## Done
+- Data moved from Docker volumes to folders: /opt/pokemoodle/<env>/pgdata and /moodledata (DATA_DIR in each env file). Counts matched before and after (2 users, 499 tables, 1 course; uploaded files copied). Rebuild test passed: image rebuilt with --no-cache and containers removed, marker row and file survived. Old Docker volumes (pokemoodle_* and pokemoodle-test_*) still exist as a fallback; remove once you are happy. Safety dumps in /opt/pokemoodle/backups/.
 - Both sites live from /opt/pokemoodle on gemini-home: test (port 8081) and live (port 8082), each with its own database, Redis and files. Moved test from the home folder without data loss.
 - Fixed pgbouncer: transaction pooling broke Moodle (cursors); now session pooling. Admin login on test failed because the generated password was never changed (and its file had been removed): reset with admin/cli/reset_password.php.
 - T-003: test site live at https://pokemoodle-test.geminitech.co.nz (login page loads, no mixed content, IP address redirects to the https name). Learned: with Caddy passing the Host header, Moodle's reverseproxy must stay off or it returns an error.
