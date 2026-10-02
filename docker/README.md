@@ -24,7 +24,7 @@ Firewall: allow ports 8081/8082 from the Caddy LXC only. Add DNS A records for b
 cd ~/pokemoodle/src
 dc() { docker compose --env-file ../$1.env "${@:2}"; }   # usage: dc test <args>
 dc test up -d --build db redis pgbouncer
-dc test run --rm -u www-data web php admin/cli/install_database.php \
+dc test run --rm web php admin/cli/install_database.php \
   --agree-license --adminuser=admin --adminpass='CHANGE_ME' --adminemail=you@example.com \
   --fullname="PokeMoodle Test" --shortname="pokemoodle-test"
 dc test up -d --build
@@ -35,6 +35,6 @@ Repeat with `prod` for the live instance (use a different admin password). Each 
 ```bash
 cd ~/pokemoodle/src && git pull
 dc test up -d --build
-dc test exec -u www-data web php admin/cli/upgrade.php --non-interactive
-dc test exec -u www-data web php admin/cli/purge_caches.php
+dc test exec web php admin/cli/upgrade.php --non-interactive
+dc test exec web php admin/cli/purge_caches.php
 ```
