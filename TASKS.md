@@ -9,11 +9,24 @@ Rules for this file and the roadmap page:
 
 ## Roadmap numbers
 
-Three streams: **Platform** (hosting, delivery, operations: T-001 to T-010, T-013, T-014), **AI workflow** (the ai-playbook project and how projects use it: T-011, T-012, T-015, T-016) and **Product** (what PokeMoodle does: T-017 onward).
+Three streams: **Platform** (hosting, delivery, operations: T-001 to T-010, T-013, T-014), **AI workflow** (the ai-playbook project and how projects use it: T-011, T-012, T-015, T-016) and **Product** (what PokeMoodle does: T-017 onward; vision in PRODUCT.md).
 
 | Roadmap | Priority | Horizon | Title | Entries in this file |
 |---|---|---|---|---|
-| T-017 | High   | Next  | Define the PokeMoodle product roadmap (Product stream) | 11.1-11.3 |
+| T-017 | High   | Done  | Define the PokeMoodle product roadmap (Product stream) | 11.1-11.3 |
+| T-018 | High   | Next  | Plan the plugins (Product) | 13.1-13.3 |
+| T-019 | High   | Now   | Design the game rules (Product focus) | 12.1-12.3 |
+| T-020 | High   | Next  | The Pokémon look and feel (Product) | 14.1-14.4 |
+| T-021 | High   | Next  | Trainer profile and collection (Product) | 15.1-15.4 |
+| T-022 | High   | Next  | Battle activity (Product) | 16.1-16.5 |
+| T-023 | Medium | Later | Gym badges and the Elite Four (Product) | 18.1-18.3 |
+| T-024 | Medium | Later | Pokédex and trainer card (Product) | 19.1-19.2 |
+| T-025 | Medium | Later | Items and the Pokémon Center (Product) | 20.1-20.3 |
+| T-026 | Medium | Later | Class battles and leaderboards (Product) | 21.1-21.3 |
+| T-027 | Medium | Later | Teacher kit (Product) | 22.1-22.3 |
+| T-028 | High   | Next  | Quality checks for our plugins (Product) | 17.1-17.3 |
+| T-029 | Medium | Next  | Keep the artwork separate (Product) | 12.4-12.5 |
+| T-030 | Low    | Later | Mobile app, sound and animation (Product) | 23.1-23.3 |
 | T-014 | High   | Now   | Move to the latest Moodle (upstream main, now 5.3 RC) | 10.1-10.4 |
 | T-001 | High   | Now   | Package the site so it runs the same everywhere | 1.1-1.5 |
 | T-002 | High   | Now   | Run it on your own computer (current focus)     | 2.1-2.4 |
@@ -35,7 +48,8 @@ Three streams: **Platform** (hosting, delivery, operations: T-001 to T-010, T-01
 
 | Decision | Waiting on you |
 |---|---|
-| D-07 What should PokeMoodle do? | Set up: audience, main features, branding/theme, plugins, what is most urgent. Unblocks T-017. |
+| D-08 Where should the artwork live? | Optional: keep Pokémon pictures, sounds and fonts in a private place, code in the public repo. Unblocks T-029. |
+| D-09 Approve the first playable slice | Approve: one themed course, a trainer card and one battle on the test site. Unblocks T-018. |
 | D-01 Can GitHub reach your server? | Set up: confirm whether gemini-home accepts SSH from the internet, or use a runner on the server. Unblocks T-006. |
 
 ## 10. Latest Moodle (T-014)
@@ -112,11 +126,77 @@ Three streams: **Platform** (hosting, delivery, operations: T-001 to T-010, T-01
 - [ ] 9.9 Adapters for it (write both after the pipeline has really run once)
 
 ## 11. Product roadmap (T-017)
-- [ ] 11.1 Capture goals, audience, features, theme and plugins from the owner (D-07)
-- [ ] 11.2 Turn each idea into a Product card with priority and horizon
+- [x] 11.1 Capture goals, audience, features, theme and plugins from the owner (D-07 answered)
+- [x] 11.2 Turn each idea into a Product card with priority and horizon (T-018 to T-030)
 - [ ] 11.3 Decide which changes need feature switches and which go on the test site first
 
+## 12. Game rules and artwork (T-019, T-029)
+- [ ] 12.1 Battle model: quiz question as a move, hits, HP, turns, win and lose
+- [ ] 12.2 Progression: points, levels, catching the 151, evolution
+- [ ] 12.3 Fairness and integrity: no grade impact unless a teacher chooses it
+- [ ] 12.4 Private artwork store (D-08)
+- [ ] 12.5 Load artwork into the theme at deploy time, not from the public repo
+
+## 13. Plugin plan (T-018)
+- [ ] 13.1 List of plugins and their jobs (theme, local engine, battle activity, blocks)
+- [ ] 13.2 Where they live in this repo (under public/, new folders only) and naming
+- [ ] 13.3 Rule for any core change: recorded and justified in PRODUCT.md
+
+## 14. Look and feel (T-020)
+- [ ] 14.1 Theme plugin, child of Boost
+- [ ] 14.2 Colours, pixel font, login page
+- [ ] 14.3 Dashboard and course pages
+- [ ] 14.4 Reduced-motion and contrast checks
+
+## 15. Trainer and collection (T-021)
+- [ ] 15.1 Engine plugin: trainer, points, level, party, collection
+- [ ] 15.2 Award rules from Moodle events (completion, quiz attempts)
+- [ ] 15.3 Privacy provider
+- [ ] 15.4 Site and course switches
+
+## 16. Battle activity (T-022)
+- [ ] 16.1 Activity plugin skeleton
+- [ ] 16.2 Questions from the question bank
+- [ ] 16.3 Turn-based battle screen
+- [ ] 16.4 Results: points, catches, completion
+- [ ] 16.5 Gradebook only if the teacher turns it on
+
+## 17. Plugin quality (T-028)
+- [ ] 17.1 moodle-plugin-ci in the pipeline (code style, PHPDoc, Mustache, JS)
+- [ ] 17.2 PHPUnit and Behat tests for each plugin
+- [ ] 17.3 Accessibility checks
+
+## 18. Badges and Elite Four (T-023)
+- [ ] 18.1 Regions mapped to courses
+- [ ] 18.2 Gym badges using Moodle badges
+- [ ] 18.3 Final challenge
+
+## 19. Dashboard blocks (T-024)
+- [ ] 19.1 Pokédex block
+- [ ] 19.2 Trainer card block
+
+## 20. Items and Pokémon Center (T-025)
+- [ ] 20.1 Items and hints
+- [ ] 20.2 Revision mode
+- [ ] 20.3 Day and night theme
+
+## 21. Class battles (T-026)
+- [ ] 21.1 Head-to-head battles
+- [ ] 21.2 Leaderboards with opt-out
+- [ ] 21.3 Teacher view
+
+## 22. Teacher kit (T-027)
+- [ ] 22.1 Demo course
+- [ ] 22.2 Question templates
+- [ ] 22.3 Teacher guide
+
+## 23. Mobile and media (T-030)
+- [ ] 23.1 Mobile app support
+- [ ] 23.2 Optional sound
+- [ ] 23.3 Animation polish
+
 ## Done
+- T-017 / D-07: product idea captured in PRODUCT.md (gamified Moodle, original 151 Pokémon, Gold/Silver-style turn-based battles, new plugins with core left alone). Product cards T-018 to T-030 and decisions D-08 (artwork location, optional) and D-09 (first playable slice) added.
 - Added a third stream, AI workflow (the ai-playbook project): T-011, T-012, T-015, T-016. Filter on the roadmap page updated.
 - Roadmap split into two streams, Platform and Product, with a filter on the page. Product stream starts with T-017 and decision D-07.
 - Added a CI/CD flow diagram as a second page (cicd.html) inside the roadmap artifact. Showing the planned test-then-live flow, with checks, backups, health checks, rollback and the fortnightly upstream sync.
