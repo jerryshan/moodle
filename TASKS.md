@@ -56,7 +56,7 @@ Rules for this file and the roadmap page:
 ## 3. Test site (T-003)
 - [x] 3.1 Second compose project (own ports, database, volumes): env examples + docker/README.md written
 - [x] 3.2 Caddy site block for pokemoodle-test.geminitech.co.nz pointing at the container's non-conflicting host port (D-02 decided: Caddy handles HTTPS)
-- [x] 3.3 Environment file on the server (~/pokemoodle/test.env on gemini-home; admin password in ~/pokemoodle/test.admin-password)
+- [x] 3.3 Environment file on the server (~/pokemoodle/test.env on gemini-home; admin password changed by you, no copy kept)
 - [x] 3.4 First install and smoke test (http://192.168.1.156:8081 returns the login page; sessions in Redis; cron running). Caddy entry and DNS applied by you; test.env switched to https (sslproxy on, reverseproxy off because Caddy passes the Host header).
 
 ## 4. Automatic checks (T-004)
