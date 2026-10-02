@@ -49,8 +49,6 @@ Three streams: **Platform** (hosting, delivery, operations: T-001 to T-010, T-01
 
 | Decision | Waiting on you |
 |---|---|
-| D-10 The original 151, or all 251? | Approve: Gen 2 setting added 100 Pokémon; keep 151 or include all 251. Unblocks T-031. |
-| D-08 Where should the artwork live? | Optional: keep Pokémon pictures, sounds and fonts in a private place, code in the public repo. Unblocks T-031. |
 | D-09 Approve the first playable slice | Approve: one themed course, a trainer card and one battle on the test site. Unblocks T-018. |
 | D-01 Can GitHub reach your server? | Set up: confirm whether gemini-home accepts SSH from the internet, or use a runner on the server. Unblocks T-006. |
 
@@ -136,7 +134,7 @@ Three streams: **Platform** (hosting, delivery, operations: T-001 to T-010, T-01
 - [ ] 12.1 Battle model: quiz question as a move, hits, HP, turns, win and lose
 - [ ] 12.2 Progression: points, levels, catching the 151, evolution
 - [ ] 12.3 Fairness and integrity: no grade impact unless a teacher chooses it
-- [ ] 12.4 Private artwork store (D-08)
+- [ ] 12.4 Private artwork store: GitHub repo pokemoodle-assets (D-08 decided)
 - [ ] 12.5 Load artwork into the theme at deploy time, not from the public repo
 
 ## 13. Plugin plan (T-018)
@@ -198,12 +196,13 @@ Three streams: **Platform** (hosting, delivery, operations: T-001 to T-010, T-01
 - [ ] 23.3 Animation polish
 
 ## 24. Artwork and data (T-031)
-- [ ] 24.1 Game data for the 151: names, types, base stats, moves (PokeAPI or its CSV data)
+- [ ] 24.1 Game data for all 251 (D-10 decided: everything in Gold/Silver/Crystal): names, types, base stats, moves (PokeAPI or its CSV data)
 - [ ] 24.2 Gen 2 (Gold/Silver/Crystal) front and back sprites
 - [ ] 24.3 Pixel font, badge and item icons, type icons
-- [ ] 24.4 Store privately (D-08), list sources and sizes before downloading
+- [ ] 24.4 Store in pokemoodle-assets; list sources and sizes before downloading
 
 ## Done
+- D-10: all 251 Pokémon (Gold/Silver/Crystal National Dex). D-08: artwork in private repo pokemoodle-assets.
 - Generation 2 (Gold/Silver/Crystal, Johto) chosen as the backdrop for the site customisation. Recorded in PRODUCT.md and T-020.
 - Added T-031 (gather Pokémon artwork and data) at your request.
 - T-017 / D-07: product idea captured in PRODUCT.md (gamified Moodle, original 151 Pokémon, Gold/Silver-style turn-based battles, new plugins with core left alone). Product cards T-018 to T-030 and decisions D-08 (artwork location, optional) and D-09 (first playable slice) added.

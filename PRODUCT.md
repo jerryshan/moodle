@@ -1,9 +1,9 @@
 # PokeMoodle: product vision
 
-A gamified, customised Moodle themed on the original 151 Pokémon, in look and feel and in how learning activities work, modelled on the turn-based battles of Pokémon Gold and Silver. Built from ten years of Moodle experience.
+A gamified, customised Moodle themed on the Pokémon of Gold, Silver and Crystal (all 251), in look and feel and in how learning activities work, modelled on the turn-based battles of Pokémon Gold and Silver. Built from ten years of Moodle experience.
 
 ## Setting
-Generation 2 (Gold, Silver and Crystal) is the backdrop for the whole site: the Johto region, Game Boy Color pixel style and colour palette, the in-game menus, text boxes and battle screen, and the day-and-night clock. Creatures: the original 151 (open decision D-10: 151 or all 251).
+Generation 2 (Gold, Silver and Crystal) is the backdrop for the whole site: the Johto region, Game Boy Color pixel style and colour palette, the in-game menus, text boxes and battle screen, and the day-and-night clock. Creatures: all 251 from the Gold/Silver/Crystal National Pokédex (D-10).
 
 ## Principles
 - **New plugins first, core untouched.** Everything lives in new plugins (theme, local, block, mod) so Moodle upgrades stay cheap. Core changes are allowed only when a plugin API genuinely cannot do the job, and each one is recorded and justified.
@@ -19,7 +19,7 @@ Generation 2 (Gold, Silver and Crystal) is the backdrop for the whole site: the 
 | Moves and types | Question categories and tags, subject strengths and weaknesses |
 | Gym badges, Elite Four | Moodle badges, course completion, final assessments |
 | XP, levels, evolution | Points, level-ups, milestones |
-| Party of six, PC box, Pokédex | Trainer profile, collection of the original 151, dashboard blocks |
+| Party of six, PC box, Pokédex | Trainer profile, collection of all 251, dashboard blocks |
 | Items, Pokémon Center | Hints and power-ups; revision and "heal" sessions |
 | Day and night | Time-aware theme |
 
@@ -31,4 +31,4 @@ Generation 2 (Gold, Silver and Crystal) is the backdrop for the whole site: the 
 - Reports and teacher tools as small separate plugins.
 
 ## Open risk
-Pokémon names, sprites, audio and logos are trademarked and copyrighted. See T-029 and D-08 before any artwork is added.
+Pokémon names, sprites, audio and logos are trademarked and copyrighted. Artwork lives only in the private repo `pokemoodle-assets` (D-08), never in the public plugin or Moodle repos.
