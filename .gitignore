@@ -66,3 +66,4 @@ tsconfig.aliases.json
 /.types
 
 /.env
+/data/

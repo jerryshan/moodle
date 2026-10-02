@@ -17,7 +17,7 @@ x-moodle: &moodle
     MOODLE_REVERSEPROXY: ${MOODLE_REVERSEPROXY:-false}
     MOODLE_REDIS_HOST: redis
   volumes:
-    - moodledata:/var/www/moodledata
+    - ${DATA_DIR:?set DATA_DIR in the env file}/moodledata:/var/www/moodledata
   depends_on:
     pgbouncer:
       condition: service_started
@@ -46,7 +46,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_INITDB_ARGS: "--auth-host=scram-sha-256"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - ${DATA_DIR:?set DATA_DIR in the env file}/pgdata:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-moodle} -d ${POSTGRES_DB:-moodle}"]
       interval: 5s
@@ -81,7 +81,3 @@ services:
       interval: 5s
       timeout: 3s
       retries: 10
-
-volumes:
-  moodledata:
-  pgdata:
