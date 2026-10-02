@@ -55,9 +55,9 @@ Rules for this file and the roadmap page:
 
 ## 3. Test site (T-003)
 - [x] 3.1 Second compose project (own ports, database, volumes): env examples + docker/README.md written
-- [x] 3.2 (written, not applied) Caddy site block for pokemoodle-test.geminitech.co.nz pointing at the container's non-conflicting host port (D-02 decided: Caddy handles HTTPS)
+- [x] 3.2 Caddy site block for pokemoodle-test.geminitech.co.nz pointing at the container's non-conflicting host port (D-02 decided: Caddy handles HTTPS)
 - [x] 3.3 Environment file on the server (~/pokemoodle/test.env on gemini-home; admin password in ~/pokemoodle/test.admin-password)
-- [x] 3.4 First install and smoke test (http://192.168.1.156:8081 returns the login page; sessions in Redis; cron running). Still to do: apply the Caddy entry and DNS (3.2), then switch test.env to the https address.
+- [x] 3.4 First install and smoke test (http://192.168.1.156:8081 returns the login page; sessions in Redis; cron running). Caddy entry and DNS applied by you; test.env switched to https (sslproxy on, reverseproxy off because Caddy passes the Host header).
 
 ## 4. Automatic checks (T-004)
 - [ ] 4.1 PHP syntax check on changed files
@@ -78,7 +78,7 @@ Rules for this file and the roadmap page:
 - [ ] 6.4 Secrets for server access
 
 ## 7. Live site (T-007)
-- [ ] 7.1 Live stack and environment file (prod.env.example written, not applied)
+- [ ] 7.1 Live stack and environment file (prod.env.example written; Caddy entry and DNS exist, pointing at port 8082)
 - [ ] 7.2 Approval step before deploying (D-05 decided: only you approve)
 - [ ] 7.3 Promote the same image that passed on test
 - [ ] 7.4 Rollback procedure
@@ -108,6 +108,8 @@ Rules for this file and the roadmap page:
 - [ ] 9.9 Adapters for it (write both after the pipeline has really run once)
 
 ## Done
+- T-003: test site live at https://pokemoodle-test.geminitech.co.nz (login page loads, no mixed content, IP address redirects to the https name). Learned: with Caddy passing the Host header, Moodle's reverseproxy must stay off or it returns an error.
+- Caddy entries and DNS for both names created by you; live name returns 502 until the live instance runs on port 8082.
 - T-001: Docker setup built and started on gemini-home (Apache, PostgreSQL 17, pgbouncer, Redis, cron). Fixes found on first run: PostgreSQL 17 needed, entrypoint permissions, cron user. Data lives in named volumes (pgdata, moodledata), which survive rebuilds.
 - T-014: Moodle 5.3 RC2 installs and runs from a fresh database.
 - Hostnames decided: pokemoodle-test.geminitech.co.nz and pokemoodle.geminitech.co.nz, Caddy with automatic certificates. Wrote instance env examples, Caddy entries and VM setup steps (docker/README.md).
