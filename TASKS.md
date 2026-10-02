@@ -108,6 +108,8 @@ Rules for this file and the roadmap page:
 - [ ] 9.9 Adapters for it (write both after the pipeline has really run once)
 
 ## Done
+- Added a CI/CD flow diagram as a second page (cicd.html) inside the roadmap artifact. Showing the planned test-then-live flow, with checks, backups, health checks, rollback and the fortnightly upstream sync.
+- ai-playbook: added Moodle-in-Docker playbook (lessons from this deployment). Note: my commit also swept in seven other playbooks/skills from another session; checked, generic, left in place.
 - Data moved from Docker volumes to folders: /opt/pokemoodle/<env>/pgdata and /moodledata (DATA_DIR in each env file). Counts matched before and after (2 users, 499 tables, 1 course; uploaded files copied). Rebuild test passed: image rebuilt with --no-cache and containers removed, marker row and file survived. Old Docker volumes (pokemoodle_* and pokemoodle-test_*) still exist as a fallback; remove once you are happy. Safety dumps in /opt/pokemoodle/backups/.
 - Both sites live from /opt/pokemoodle on gemini-home: test (port 8081) and live (port 8082), each with its own database, Redis and files. Moved test from the home folder without data loss.
 - Fixed pgbouncer: transaction pooling broke Moodle (cursors); now session pooling. Admin login on test failed because the generated password was never changed (and its file had been removed): reset with admin/cli/reset_password.php.
