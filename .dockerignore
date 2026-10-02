@@ -1,0 +1,8 @@
+.git
+.github
+.env
+node_modules
+/config.php
+docker-compose.yml
+/*.md
+!README.md

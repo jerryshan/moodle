@@ -1,0 +1,87 @@
+name: pokemoodle
+
+x-moodle: &moodle
+  build:
+    context: .
+    target: prod
+  image: ${MOODLE_IMAGE:-pokemoodle}:${IMAGE_TAG:-latest}
+  restart: unless-stopped
+  environment:
+    MOODLE_DB_HOST: pgbouncer
+    MOODLE_DB_PORT: "6432"
+    MOODLE_DB_NAME: ${POSTGRES_DB:-moodle}
+    MOODLE_DB_USER: ${POSTGRES_USER:-moodle}
+    MOODLE_DB_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+    MOODLE_WWWROOT: ${MOODLE_WWWROOT:?set MOODLE_WWWROOT in .env}
+    MOODLE_SSLPROXY: ${MOODLE_SSLPROXY:-false}
+    MOODLE_REVERSEPROXY: ${MOODLE_REVERSEPROXY:-false}
+    MOODLE_REDIS_HOST: redis
+  volumes:
+    - moodledata:/var/www/moodledata
+  depends_on:
+    pgbouncer:
+      condition: service_started
+    redis:
+      condition: service_healthy
+
+services:
+  web:
+    <<: *moodle
+    ports:
+      - "${WEB_BIND:-127.0.0.1}:${WEB_PORT:-8080}:80"
+
+  cron:
+    <<: *moodle
+    command: >
+      sh -c "while true; do
+      su -s /bin/sh www-data -c 'php admin/cli/cron.php' ;
+      sleep 60; done"
+
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-moodle}
+      POSTGRES_USER: ${POSTGRES_USER:-moodle}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_INITDB_ARGS: "--auth-host=scram-sha-256"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-moodle} -d ${POSTGRES_DB:-moodle}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  pgbouncer:
+    image: edoburu/pgbouncer:latest
+    restart: unless-stopped
+    environment:
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_NAME: ${POSTGRES_DB:-moodle}
+      DB_USER: ${POSTGRES_USER:-moodle}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      AUTH_TYPE: scram-sha-256
+      POOL_MODE: transaction
+      MAX_CLIENT_CONN: "200"
+      DEFAULT_POOL_SIZE: "20"
+      MAX_PREPARED_STATEMENTS: "200"
+      LISTEN_PORT: "6432"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--maxmemory", "256mb", "--maxmemory-policy", "volatile-lru", "--save", ""]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  moodledata:
+  pgdata:
