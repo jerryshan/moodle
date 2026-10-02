@@ -27,6 +27,7 @@ Three streams: **Platform** (hosting, delivery, operations: T-001 to T-010, T-01
 | T-028 | High   | Next  | Quality checks for our plugins (Product) | 17.1-17.3 |
 | T-029 | Medium | Next  | Keep the artwork separate (Product) | 12.4-12.5 |
 | T-030 | Low    | Later | Mobile app, sound and animation (Product) | 23.1-23.3 |
+| T-031 | High   | Next  | Gather the Pokémon artwork and data (Product) | 24.1-24.4 |
 | T-014 | High   | Now   | Move to the latest Moodle (upstream main, now 5.3 RC) | 10.1-10.4 |
 | T-001 | High   | Now   | Package the site so it runs the same everywhere | 1.1-1.5 |
 | T-002 | High   | Now   | Run it on your own computer (current focus)     | 2.1-2.4 |
@@ -48,7 +49,7 @@ Three streams: **Platform** (hosting, delivery, operations: T-001 to T-010, T-01
 
 | Decision | Waiting on you |
 |---|---|
-| D-08 Where should the artwork live? | Optional: keep Pokémon pictures, sounds and fonts in a private place, code in the public repo. Unblocks T-029. |
+| D-08 Where should the artwork live? | Optional: keep Pokémon pictures, sounds and fonts in a private place, code in the public repo. Unblocks T-031. |
 | D-09 Approve the first playable slice | Approve: one themed course, a trainer card and one battle on the test site. Unblocks T-018. |
 | D-01 Can GitHub reach your server? | Set up: confirm whether gemini-home accepts SSH from the internet, or use a runner on the server. Unblocks T-006. |
 
@@ -195,7 +196,14 @@ Three streams: **Platform** (hosting, delivery, operations: T-001 to T-010, T-01
 - [ ] 23.2 Optional sound
 - [ ] 23.3 Animation polish
 
+## 24. Artwork and data (T-031)
+- [ ] 24.1 Game data for the 151: names, types, base stats, moves (PokeAPI or its CSV data)
+- [ ] 24.2 Gen 2 (Gold/Silver/Crystal) front and back sprites
+- [ ] 24.3 Pixel font, badge and item icons, type icons
+- [ ] 24.4 Store privately (D-08), list sources and sizes before downloading
+
 ## Done
+- Added T-031 (gather Pokémon artwork and data) at your request.
 - T-017 / D-07: product idea captured in PRODUCT.md (gamified Moodle, original 151 Pokémon, Gold/Silver-style turn-based battles, new plugins with core left alone). Product cards T-018 to T-030 and decisions D-08 (artwork location, optional) and D-09 (first playable slice) added.
 - Added a third stream, AI workflow (the ai-playbook project): T-011, T-012, T-015, T-016. Filter on the roadmap page updated.
 - Roadmap split into two streams, Platform and Product, with a filter on the page. Product stream starts with T-017 and decision D-07.
