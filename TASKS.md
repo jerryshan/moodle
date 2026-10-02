@@ -49,6 +49,7 @@ Three streams: **Platform** (hosting, delivery, operations: T-001 to T-010, T-01
 
 | Decision | Waiting on you |
 |---|---|
+| D-10 The original 151, or all 251? | Approve: Gen 2 setting added 100 Pokémon; keep 151 or include all 251. Unblocks T-031. |
 | D-08 Where should the artwork live? | Optional: keep Pokémon pictures, sounds and fonts in a private place, code in the public repo. Unblocks T-031. |
 | D-09 Approve the first playable slice | Approve: one themed course, a trainer card and one battle on the test site. Unblocks T-018. |
 | D-01 Can GitHub reach your server? | Set up: confirm whether gemini-home accepts SSH from the internet, or use a runner on the server. Unblocks T-006. |
