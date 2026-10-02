@@ -54,8 +54,8 @@ Rules for this file and the roadmap page:
 - [ ] 2.4 Day-to-day commands written down
 
 ## 3. Test site (T-003)
-- [ ] 3.1 Second compose project (own ports, database, volumes)
-- [ ] 3.2 Caddy site block for pokemoodle-test.geminitech.co.nz pointing at the container's non-conflicting host port (D-02 decided: Caddy handles HTTPS)
+- [x] 3.1 Second compose project (own ports, database, volumes): env examples + docker/README.md written
+- [x] 3.2 (written, not applied) Caddy site block for pokemoodle-test.geminitech.co.nz pointing at the container's non-conflicting host port (D-02 decided: Caddy handles HTTPS)
 - [ ] 3.3 Environment file on the server
 - [ ] 3.4 First install and smoke test
 
@@ -78,7 +78,7 @@ Rules for this file and the roadmap page:
 - [ ] 6.4 Secrets for server access
 
 ## 7. Live site (T-007)
-- [ ] 7.1 Live stack and environment file
+- [ ] 7.1 Live stack and environment file (prod.env.example written, not applied)
 - [ ] 7.2 Approval step before deploying (D-05 decided: only you approve)
 - [ ] 7.3 Promote the same image that passed on test
 - [ ] 7.4 Rollback procedure
@@ -108,6 +108,7 @@ Rules for this file and the roadmap page:
 - [ ] 9.9 Adapters for it (write both after the pipeline has really run once)
 
 ## Done
+- Hostnames decided: pokemoodle-test.geminitech.co.nz and pokemoodle.geminitech.co.nz, Caddy with automatic certificates. Wrote instance env examples, Caddy entries and VM setup steps (docker/README.md).
 - D-06 approved: Moodle's Core workflow (push.yml) set to manual-only, and main-pokemoodle pushed to GitHub (4 commits).
 - Branch strategy decided: main mirrors upstream (fast-forward only, pushed); main-pokemoodle holds our changes (3 commits locally, not pushed). Fortnightly: merge main into main-pokemoodle.
 - Pushed main to the fork: now identical to upstream main (Moodle 5.3 RC2).
