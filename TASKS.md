@@ -9,8 +9,11 @@ Rules for this file and the roadmap page:
 
 ## Roadmap numbers
 
+Two streams: **Platform** (T-001 to T-016: hosting, delivery, operations, AI workflow) and **Product** (what PokeMoodle does; from T-017). Everything numbered so far is Platform except T-017.
+
 | Roadmap | Priority | Horizon | Title | Entries in this file |
 |---|---|---|---|---|
+| T-017 | High   | Next  | Define the PokeMoodle product roadmap (Product stream) | 11.1-11.3 |
 | T-014 | High   | Now   | Move to the latest Moodle (upstream main, now 5.3 RC) | 10.1-10.4 |
 | T-001 | High   | Now   | Package the site so it runs the same everywhere | 1.1-1.5 |
 | T-002 | High   | Now   | Run it on your own computer (current focus)     | 2.1-2.4 |
@@ -32,6 +35,7 @@ Rules for this file and the roadmap page:
 
 | Decision | Waiting on you |
 |---|---|
+| D-07 What should PokeMoodle do? | Set up: audience, main features, branding/theme, plugins, what is most urgent. Unblocks T-017. |
 | D-01 Can GitHub reach your server? | Set up: confirm whether gemini-home accepts SSH from the internet, or use a runner on the server. Unblocks T-006. |
 
 ## 10. Latest Moodle (T-014)
@@ -107,7 +111,13 @@ Rules for this file and the roadmap page:
 - [ ] 9.8 Moodle CI/CD playbook: build, install smoke test, maintenance-mode deploy, upgrade, rollback
 - [ ] 9.9 Adapters for it (write both after the pipeline has really run once)
 
+## 11. Product roadmap (T-017)
+- [ ] 11.1 Capture goals, audience, features, theme and plugins from the owner (D-07)
+- [ ] 11.2 Turn each idea into a Product card with priority and horizon
+- [ ] 11.3 Decide which changes need feature switches and which go on the test site first
+
 ## Done
+- Roadmap split into two streams, Platform and Product, with a filter on the page. Product stream starts with T-017 and decision D-07.
 - Added a CI/CD flow diagram as a second page (cicd.html) inside the roadmap artifact. Showing the planned test-then-live flow, with checks, backups, health checks, rollback and the fortnightly upstream sync.
 - ai-playbook: added Moodle-in-Docker playbook (lessons from this deployment). Note: my commit also swept in seven other playbooks/skills from another session; checked, generic, left in place.
 - Data moved from Docker volumes to folders: /opt/pokemoodle/<env>/pgdata and /moodledata (DATA_DIR in each env file). Counts matched before and after (2 users, 499 tables, 1 course; uploaded files copied). Rebuild test passed: image rebuilt with --no-cache and containers removed, marker row and file survived. Old Docker volumes (pokemoodle_* and pokemoodle-test_*) still exist as a fallback; remove once you are happy. Safety dumps in /opt/pokemoodle/backups/.
